@@ -2,7 +2,7 @@
   "port": 8080,
   "debug": "true",
   "database_host": "localhost",
-  "database_database": "kickigagne",
+  "database_name": "kickigagne",
   "database_type": "mysql",
   "database_username": "root",
   "database_password": "root"
