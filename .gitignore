@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# config/env files
+config/myconfig.json
+
+# editor config
+.vscode

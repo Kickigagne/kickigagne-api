@@ -1,3 +1,10 @@
+const fs = require('fs');
+const path = require('path');
+
+const logger = require('../libs/winston');
+
+const env = process.env.NODE_ENV || 'dev';
+
 const CONFIG_ENV_NAME = {
   port: 'APP_PORT',
   debug: 'APP_DEBUG',
@@ -16,7 +23,7 @@ const CONFIG_FILTER = {
 const CONFIG_DEFAULT_VALUE = {
   dev: {
     port: 8080,
-    debug: true,
+    debug: 'true',
     database_host: 'localhost',
     database_database: 'db',
     database_type: 'mysql',
@@ -24,6 +31,18 @@ const CONFIG_DEFAULT_VALUE = {
     database_password: '',
   },
 };
+
+const MYCONFIG_FILENAME = 'myconfig.json';
+const MYCONFIG_PATH = path.join(__dirname, MYCONFIG_FILENAME);
+
+if (fs.existsSync(MYCONFIG_PATH)) {
+  const configContent = fs.readFileSync(MYCONFIG_PATH);
+  try {
+    CONFIG_DEFAULT_VALUE[env] = JSON.parse(configContent);
+  } catch (e) {
+    logger.error(e.toString());
+  }
+}
 
 
 module.exports = { CONFIG_ENV_NAME, CONFIG_DEFAULT_VALUE, CONFIG_FILTER };
