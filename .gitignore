@@ -61,7 +61,7 @@ typings/
 .next
 
 # config/env files
-config/myconfig.json
+.env
 
 # editor config
 .vscode

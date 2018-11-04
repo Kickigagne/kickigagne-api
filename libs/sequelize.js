@@ -1,13 +1,10 @@
-
 const Sequelize = require('sequelize');
 
-const config = require('../config');
-
 const options = {
-  host: config.database_host,
-  dialect: config.database_type,
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_TYPE,
   operatorsAliases: false,
 };
 
-module.exports = new Sequelize(config.database_name,
-  config.database_username, config.database_password, options);
+module.exports = new Sequelize(process.env.DB_NAME,
+  process.env.DB_USERNAME, process.env.DB_PASSWORD, options);
